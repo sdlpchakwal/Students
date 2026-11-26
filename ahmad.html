@@ -1,0 +1,645 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b1120;
+            color: #f1f5f9;
+            line-height: 1.7;
+        }
+
+        :root {
+            --accent: #38bdf8;
+            --background: #0b1120;
+            --card: #111c30;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+        }
+
+        /* Navigation */
+        header {
+            background: rgba(11, 17, 32, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        nav {
+            max-width: 1150px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 25px;
+        }
+
+        .hero-container {
+            max-width: 1150px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h3 {
+            color: var(--accent);
+            font-size: 22px;
+        }
+
+        .hero-text h1 {
+            font-size: 58px;
+            line-height: 1.2;
+            margin: 15px 0;
+        }
+
+        .hero-text h2 {
+            font-size: 26px;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            color: var(--muted);
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .hero-image {
+            width: 330px;
+            height: 330px;
+            border-radius: 50%;
+            border: 5px solid var(--accent);
+            background: #17243b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.15);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-placeholder {
+            color: var(--accent);
+            font-size: 90px;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 30px;
+            background: var(--accent);
+            color: #0b1120;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: #7dd3fc;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        /* General Sections */
+        section {
+            padding: 80px 25px;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 38px;
+            margin-bottom: 45px;
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        /* About */
+        .about-content {
+            background: var(--card);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid #1e293b;
+        }
+
+        .about-content p {
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+
+        /* Education */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: var(--muted);
+        }
+
+        .date {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: #7dd3fc;
+            font-size: 14px;
+        }
+
+        /* Skills */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .skill {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #1e293b;
+        }
+
+        .skill h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        /* Journey */
+        .journey {
+            border-left: 3px solid var(--accent);
+            padding-left: 30px;
+        }
+
+        .journey-item {
+            position: relative;
+            margin-bottom: 35px;
+            background: var(--card);
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .journey-item::before {
+            content: "";
+            position: absolute;
+            left: -39px;
+            top: 25px;
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* Contact */
+        .contact-box {
+            background: var(--card);
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #1e293b;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            margin: 12px 0;
+        }
+
+        .contact-box a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid #1e293b;
+            color: var(--muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            .hero-container {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 42px;
+            }
+
+            .hero-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero-text h1 {
+                font-size: 35px;
+            }
+
+            .hero-text h2 {
+                font-size: 21px;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">MyPortfolio.</div>
+
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+
+            <div class="hero-text">
+                <h3>Hello, Welcome to My Website!</h3>
+
+                <h1>I'm Your Name</h1>
+
+                <h2>Student | Professional | Learner</h2>
+
+                <p>
+                    Welcome to my personal portfolio website.
+                    Here you can explore my life, education,
+                    skills, experiences, achievements and goals.
+                    I believe in learning, hard work and
+                    continuous personal growth.
+                </p>
+
+                <a href="#about" class="btn">About Me</a>
+
+                <a href="#contact" class="btn btn-outline">
+                    Contact Me
+                </a>
+            </div>
+
+            <div class="hero-image">
+                <!-- Replace this with your photo -->
+                <div class="profile-placeholder">ME</div>
+
+                <!--
+                To add your photo, replace the ME above with:
+
+                <img src="myphoto.jpg" alt="My Photo">
+
+                Keep your photo in the same folder as index.html.
+                -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+
+            <h2 class="section-title">About <span>Me</span></h2>
+
+            <div class="about-content">
+
+                <p>
+                    Hello! My name is Your Name. I am a motivated,
+                    hardworking and passionate individual who
+                    believes in personal development, education
+                    and achieving goals.
+                </p>
+
+                <p>
+                    I always try to learn new things, improve
+                    my abilities and explore opportunities.
+                    I believe that dedication, discipline and
+                    positive thinking are the keys to success.
+                </p>
+
+                <p>
+                    This website is my personal space where I
+                    share my background, education, interests,
+                    skills, achievements and future plans.
+                </p>
+
+                <p>
+                    <strong>Location:</strong> Your City, Pakistan
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <div class="container">
+
+            <h2 class="section-title">My <span>Education</span></h2>
+
+            <div class="grid">
+
+                <div class="card">
+                    <span class="date">20XX - 20XX</span>
+                    <h3>Matriculation</h3>
+                    <p>School Name</p>
+                    <p>Board / City</p>
+                    <p>Marks / Grade: Your Result</p>
+                </div>
+
+                <div class="card">
+                    <span class="date">20XX - 20XX</span>
+                    <h3>Intermediate</h3>
+                    <p>College Name</p>
+                    <p>Board / City</p>
+                    <p>Marks / Grade: Your Result</p>
+                </div>
+
+                <div class="card">
+                    <span class="date">20XX - 20XX</span>
+                    <h3>Bachelor's Degree</h3>
+                    <p>University Name</p>
+                    <p>Degree / Department</p>
+                    <p>Marks / CGPA: Your Result</p>
+                </div>
+
+                <div class="card">
+                    <span class="date">20XX - Present</span>
+                    <h3>Courses & Certifications</h3>
+                    <p>Course Name</p>
+                    <p>Institute / Online Platform</p>
+                    <p>Certificate or Course Details</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <div class="container">
+
+            <h2 class="section-title">My <span>Skills</span></h2>
+
+            <div class="skills">
+
+                <div class="skill">
+                    <h3>Microsoft Office</h3>
+                    <p>Word, Excel and PowerPoint</p>
+                </div>
+
+                <div class="skill">
+                    <h3>Communication</h3>
+                    <p>Communication and Teamwork</p>
+                </div>
+
+                <div class="skill">
+                    <h3>Computer Skills</h3>
+                    <p>Basic Computer Knowledge</p>
+                </div>
+
+                <div class="skill">
+                    <h3>Problem Solving</h3>
+                    <p>Logical Thinking</p>
+                </div>
+
+                <div class="skill">
+                    <h3>Time Management</h3>
+                    <p>Planning and Organization</p>
+                </div>
+
+                <div class="skill">
+                    <h3>Learning</h3>
+                    <p>Self Learning and Development</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey -->
+    <section id="journey">
+        <div class="container">
+
+            <h2 class="section-title">My <span>Journey</span></h2>
+
+            <div class="journey">
+
+                <div class="journey-item">
+                    <h3>My Early Life</h3>
+                    <p>
+                        Write about your childhood, family,
+                        hometown and early experiences.
+                    </p>
+                </div>
+
+                <div class="journey-item">
+                    <h3>My Educational Journey</h3>
+                    <p>
+                        Write about your school, college,
+                        university and educational experiences.
+                    </p>
+                </div>
+
+                <div class="journey-item">
+                    <h3>My Achievements</h3>
+                    <p>
+                        Write about your certificates, awards,
+                        projects and achievements.
+                    </p>
+                </div>
+
+                <div class="journey-item">
+                    <h3>My Future Goals</h3>
+                    <p>
+                        Write about your ambitions, career plans,
+                        dreams and future objectives.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+
+            <h2 class="section-title">Contact <span>Me</span></h2>
+
+            <div class="contact-box">
+
+                <h3>Let's Connect!</h3>
+
+                <p>
+                    Feel free to contact me for communication,
+                    collaboration or professional opportunities.
+                </p>
+
+                <p>
+                    Email:
+                    <a href="mailto:your@email.com">
+                        your@email.com
+                    </a>
+                </p>
+
+                <p>
+                    Phone:
+                    <a href="tel:+923000000000">
+                        +92 300 0000000
+                    </a>
+                </p>
+
+                <p>
+                    LinkedIn:
+                    <a href="https://www.linkedin.com/"
+                       target="_blank">
+                        My LinkedIn Profile
+                    </a>
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            &copy; <span id="year"></span> Your Name.
+            All Rights Reserved.
+        </p>
+        <p>Designed with dedication and passion.</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
